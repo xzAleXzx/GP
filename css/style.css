@@ -1,0 +1,117 @@
+
+.container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  
+}
+.form-group {
+  display: inline-block;
+  vertical-align: middle;
+  
+  
+  
+}
+.form-control {
+  font-size: 40px;
+  height: 50px;
+  width: auto;
+  border-radius: 20px;
+  background-color: rgba(143, 223, 203, 0.808);
+  font-size: 5vmin;
+  height: 5vmin;
+  width: 100%;  
+  
+}
+
+.btn {
+  font-size: 30px;
+  margin: 40px;
+  background-color: rgb(19, 236, 146);
+  height: 50px;
+  width: 300px;
+  border-radius: 20px;
+  font-size: 5vmin;
+  height: 6vmin;
+  width: 70%;
+}
+/* Общие настройки для всей страниц */
+body {
+  /* делаем высоту страницы на весь экран */
+  height: 100vh;
+  /* то, что не влезло в границы — скрываем */
+  overflow: hidden;
+  /* подключаем случайный фон и добавляем затемнение по кругу */
+  background: radial-gradient(farthest-corner, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.8)), url(https://picsum.photos/1280/800) center/cover;
+  /* выравниваем всё по центру */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  /* убираем отступы */
+  margin: 0;
+}
+
+
+/* общий класс для текста */
+.wrapper {
+  /* задаём размеры текста, высоту и ширину */
+  font-size: 17vmin;
+  height: 2em;
+  width: 100%;
+  /* размещаем текст по центру блока */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* добавляем прозрачность для всех элементов на странице */
+  mix-blend-mode: screen;
+}
+
+/* стиль для тега span, который   будет лежать внутри стиля wrapper */
+.wrapper span {
+  /* цвет первого слова текста */
+  --color: #11ff74;
+  /* устанавливаем вид шрифта, его начертание и жирность */
+  font-family: Impact, "Anton", Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  font-weight: 700;
+  font-style: italic;
+  /* создаём новый блок, в котором будет текст */
+  display: block;
+  /* включаем абсолютное позиционирование элементов */
+  position: absolute;
+  /* используем цвет из переменной */
+  color: var(--color);
+}
+
+/* общие настройки псевдоклассов для тега span */
+.wrapper span::before, .wrapper span::after {
+  /* создаём в стиле новый текст */
+  content: attr(data-text);
+  /* делаем для него новый блок */
+  display: block;
+  /* включаем для него относительное позиционирование */
+  position: relative;
+}
+
+/* этот псевдокласс создаёт прозрачную обводку для каждого слова */
+.wrapper span::before {
+  position: absolute;
+  /* добавляем прозрачный контур к этому слову */
+  -webkit-text-stroke: 0.1em black;
+}
+
+/* обрабатываем первое слово */
+.wrapper span:first-child {
+  /* сдвигаем его чуть выше и левее, чтобы он оказался не по центру */
+  transform: translate(-0.255em, -0.25em);
+}
+
+/* обрабатываем второе слово */
+.wrapper span:last-child {
+  /* цвет второго слова */
+  --color: #4452d1;
+  /* сдвигаем второе слово вправо и вниз */
+  transform: translate(0.255em, 0.25em);
+}

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<!-- служебная часть -->
+
+<head>
+  <!-- заголовок страницы -->
+  <title>Генератор паролей</title>
+  <!-- настраиваем служебную информацию для браузеров -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- подключаем функцию, которая хеширует строку -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+	<div class="wrapper">
+		<span data-text="Генератор"></span>
+		<span data-text="паролей"></span>
+	</div>
+    <div class="container">
+      <div class="form-group mx-sm-3">
+        <input type="text" class="form-control" id="input-password">
+      </div>
+      <button type="button" id="input-generate" class="btn btn-primary">Сгенерировать</button>
+    </form>
+  </div>
+  <script src="jquery.min.js"></script>
+  <script>
+  $("#input-generate").click(function(){
+     var $input = $("#input-password");
+     $input.val('');
+
+     var pass = generatePassword();
+     var txt = pass.split("");
+     var interval = setInterval(function(){
+       if(!txt[0]){
+        clearInterval(interval);
+      } else {
+        $input.val($input.val() + txt.shift());
+      }
+    }, 50);
+
+    return false;
+  });
+
+  function generatePassword(){
+    var length = 10,
+    charset = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz~!@-#$";
+    if(window.crypto && window.crypto.getRandomValues) {
+      return Array(length)
+        .fill(charset)
+        .map(x => x[Math.floor(crypto.getRandomValues(new Uint32Array(1))[0] / (0xffffffff + 1) * (x.length + 1))])
+        .join('');
+    } else {
+      res = '';
+      for (var i = 0, n = charset.length; i < length; ++i) {
+        res += charset.charAt(Math.floor(Math.random() * n));
+      }
+      return res;
+    }
+  }
+  </script>
+</body>
+</html>
